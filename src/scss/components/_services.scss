@@ -1,0 +1,68 @@
+@use "vars" as *;
+@use "mixins" as *;
+
+.services {
+  margin-top: 100px; //CHECK !!!!
+
+  // &__title {
+  //   text-transform: uppercase;
+  //   text-align: center;
+  //   margin-bottom: 30px;
+  // }
+
+  &__wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  &__card {
+    &-title,
+    &-description {
+      color: $light-color;
+    }
+
+    &-container {
+      width: 100%;
+      height: 425px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      //   align-items: center;
+      text-align: left;
+      padding: 10px;
+    }
+
+    &--consultations {
+      @include service-card-bg(
+        "/assets/images/services/consultation-card.webp"
+      );
+    }
+
+    &--vaccine {
+      @include service-card-bg("/assets/images/services/vaccine-card.webp");
+    }
+
+    &--examination {
+      @include service-card-bg(
+        "/assets/images/services/instrumental-examenation-card.webp"
+      );
+    }
+
+    &--labaratory {
+      @include service-card-bg("/assets/images/services/labaratory-card.webp");
+    }
+
+    &--documents {
+      @include service-card-bg("/assets/images/services/documents-card.webp");
+    }
+
+    &--mental {
+      @include service-card-bg("/assets/images/services/support-card.webp");
+    }
+  }
+}

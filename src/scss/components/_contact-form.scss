@@ -1,0 +1,96 @@
+@use "vars" as *;
+
+.contact {
+  margin: 150px 0 0 0;
+  background-color: $form-bg-color;
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+  }
+
+  &-form {
+    border-radius: 25px 0 0 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 700px;
+    max-width: 500px;
+    background-color: $light-color;
+    padding: 25px;
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    &__input {
+      border: 0.5px solid $dark-color;
+      border-radius: 20px;
+      font-weight: 400;
+      font-size: 16px;
+      padding: 10px 16px;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+
+    &__label {
+      font-weight: 500;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+
+    &__textarea {
+      resize: none;
+      //   max-width: 400px;
+    }
+
+    &__button {
+      padding: 16px 47px;
+      font-weight: 700;
+      font-size: 24px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      color: $light-color;
+      background-color: $blue-button-color;
+      border: 0;
+      cursor: pointer;
+      align-self: center;
+      min-width: 250px;
+
+      transition: transform 0.1s ease-in-out;
+
+      &:active {
+        transform: scale(0.96);
+      }
+    }
+
+    &__button:hover{
+      background-color: #165dc6;
+    }
+
+    &__disclaimer {
+      font-weight: 400;
+      font-size: 12px;
+      color: #757575;
+      text-align: center;
+      padding-top: 15px;
+    }
+
+    &__disclaimer span {
+      font-weight: 600;
+      color: $blue-button-color;
+    }
+
+    &__image {
+      width: 500px;
+      height: 100%;
+      border-radius: 0 25px 25px 0;
+    }
+  }
+}
+
+//фикс ступеньки

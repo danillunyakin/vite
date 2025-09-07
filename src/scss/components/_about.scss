@@ -1,0 +1,30 @@
+@use "vars" as *;
+
+.about-clinic {
+  // &__title {
+  //   font-weight: 600;
+  //   font-size: 28px;
+  // }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__info {
+    &-text {
+      text-align: center;
+      font-weight: 400;
+      font-size: 20px;
+      padding: 20px;
+    }
+
+    &-container {
+      justify-content: center;
+      max-width: 1000px;
+      background-color: $light-color;
+      border-radius: 20px;
+    }
+  }
+}

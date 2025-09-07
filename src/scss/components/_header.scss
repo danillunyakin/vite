@@ -1,0 +1,36 @@
+@use "vars";
+
+.header {
+  &__container {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__menu {
+    &-list {
+      display: flex;
+
+      &-item + &-item {
+        padding-left: 10px;
+      }
+
+      &-link {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 100%;
+        padding: 5px 20px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 8px;
+      }
+
+      &-link:hover {
+        background-color: vars.$blue-button-color;
+        color: vars.$light-color;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}

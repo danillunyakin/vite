@@ -1,0 +1,185 @@
+@use "vars" as *;
+
+// @import "normalize.css";
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.page {
+  height: 100%;
+  font-family: $font-family, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.page__body {
+  color: $dark-color;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+  font-size: 16px;
+  background-color: $light-bg-color;
+  border-radius: 5px;
+}
+
+
+.title {
+   text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+
+header {
+  position: relative;
+  z-index: 1;
+}
+
+.site-container {
+  overflow: hidden;
+}
+
+.is-hidden {
+  display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.btn-reset {
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.input-reset {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $container-width;
+  //background-color: var(--light-bg-color);
+  // border-radius: 5px;
+}
+
+.centered {
+  text-align: center;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-60px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99998;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4, visibility 0.4s;
+}
+
+.modal__box {
+  position: relative;
+  max-width: 800px;
+  padding: 45px;
+  z-index: 1;
+  margin: 30px 15px;
+  background-color: $light-bg-color;
+  box-shadow: 0px 0px 17px -7px rgba(34, 60, 80, 0.2);
+  transform: scale(0);
+  transition: transform 0.8s;
+}
+
+.close-modal__image {
+  width: 40px;
+  height: 40px;
+}
+
+.close-modal__btn {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: 0;
+  padding: 5px;
+}
+
+.modal__open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__open .modal__box {
+  transform: scale(1);
+}

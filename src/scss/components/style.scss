@@ -1,0 +1,18 @@
+@use "vars";
+@use "fonts";
+@use "settings";
+@use "mixins";
+
+@use "header";
+@use "hero";
+@use "about";
+@use "services";
+@use "staff";
+@use "benefits";
+@use "contact-form";
+// @use "privacy-policy";
+@use "footer";
+
+@import "normalize.css";
+// @import "fonts";
+//подключение правильне!

@@ -1,0 +1,56 @@
+<section class="contact" id="contact-form">
+  <div class="container">
+    <div class="contact__wrapper">
+      <form class="contact-form" id="form">
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="name">ПІБ</label>
+          <input
+            class="contact-form__input contact-form__input--name"
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Шевченко Тарас Григорович"
+          />
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label"  for="tel">Номер телефону</label>
+          <input
+            class="contact-form__input contact-form__input--tel"
+            id="tel"
+            type="tel"
+            name="tel"
+            placeholder="+380(__)___-__-__"
+           
+          />
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="comment">Коментар</label>
+          <textarea
+            class="contact-form__input contact-form__textarea"
+            name="message"
+            id="message"
+            placeholder="Ваш коментар"
+            rows="10"
+            cols="20"
+           
+          ></textarea>
+        </div>
+        <div class="contact-form__group">
+          <button class="contact-form__button" type="submit">Надіслати</button>
+          <p class="contact-form__disclaimer">
+            Натискаючи
+            <span> «НАДІСЛАТИ» </span>
+            , ви погоджуєтесь на обробку персональних даних
+          </p>
+        </div>
+      </form>
+      <!-- <div class="contact-form__image-wrapper"> -->
+      <img
+        class="contact-form__image"
+        src="/assets/images/contact-form/contact-form-image.webp"
+        alt=""
+      />
+      <!-- </div> -->
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+@use "vars" as *;
+
+.staff {
+  margin-top: 120px;
+  &__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 карточки в ряд
+    gap: 20px;
+    grid: auto rows 240px;
+
+    &-item {
+      background-color: $form-bg-color;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      // justify-content: center;
+      gap: 40px;
+      height: 225px; // карточка не станет меньше по высоте
+      // min-width: 450px;
+      padding: 20px;
+    }
+
+    // &-item:last-child {
+    //   grid-column: 1 / -1; // растягиваем на всю строку
+    //   justify-self: center; // центрируем по горизонтали
+    //   width: 680px;
+    // }
+
+    &-image {
+      flex-shrink: 0;
+      object-fit: cover;
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      //  margin: 0 0 0 20px;
+    }
+
+    &-title {
+      font-size: 24px;
+    }
+
+    &-subtitle {
+      // line-height: ;
+      margin: 0;
+      font-weight: 400;
+      color: $blue-button-color;
+    }
+  }
+}

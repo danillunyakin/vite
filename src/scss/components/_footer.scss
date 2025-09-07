@@ -1,0 +1,113 @@
+@use "vars" as *;
+
+//ПОЧИНИТЬ ССИЛКУ 
+
+
+.footer {
+  background-color: $form-bg-color;
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &-column {
+    margin-top: 30px;
+    &__menu {
+      padding: 0;
+      &-title {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+
+      &-item + &-item {
+        padding-top: 10px;
+      }
+
+      &-item {
+        &-contact,
+        &-location {
+          color: $blue-button-color;
+        }
+      }
+
+
+      &-link {
+        // display: inline-flex;
+        // align-items: center;
+        // gap: 5px;
+      }
+      &-link:hover {
+        color: $blue-button-color;
+        transition: color 0.3s ease-in;
+      }
+
+      &-link span {
+        display: block;
+      }
+    }
+
+    &__link-image {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &-column {
+    &__image {
+      width: 200px;
+      height: 200px;
+    }
+
+    &__description {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    &__description span {
+      color: $blue-button-color;
+      font-weight: 600;
+    }
+  }
+  &-column:nth-child(1) {
+    margin-top: 0;
+  }
+
+  &-bottom {
+    &__list {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      border-top: 3px solid $light-bg-color;
+      padding: 0;
+
+      &-btn {
+        border: 0;
+        background: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+
+      }
+
+      &-link,
+      &-text {
+        font-size: 12px;
+      }
+    }
+  }
+
+iframe {
+  display: block;
+    width: 100%;   // на всю ширину экрана
+    height: 350px; // можно менять под макет (vh или px)
+    border: 0;
+}
+
+.facebook-link {
+  display: inline-flex;
+        align-items: center;
+        gap: 5px;
+}
+}

@@ -1,0 +1,30 @@
+@use "vars" as *;
+
+.benefits {
+  margin-top: 100px;
+  // &__title {
+  //   text-align: center;
+  //   text-transform: uppercase;
+  // }
+
+  &__list {
+    margin-top: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-item {
+      // margin: 0;
+      // padding: 0;
+
+      &--title {
+        padding: 10px 15px;
+        // margin: 1px;
+        background-color: $blue-button-color;
+        color: $light-color;
+        border-radius: 20px;
+        // padding: 0;
+      }
+    }
+  }
+}
