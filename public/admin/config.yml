@@ -12,6 +12,7 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
+    format: "frontmatter"
     fields:
       - label: "Заголовок"
         name: "title"
