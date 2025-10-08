@@ -2,9 +2,10 @@
 
 .posts {
   &__title {
-    padding: 10px 15px;
-    background-color: $blue-button-color;
-    color: $light-color;
-    border-radius: 20px;
-  }
+       text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
 }
