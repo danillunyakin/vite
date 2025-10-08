@@ -1,0 +1,10 @@
+@use "vars" as *;
+
+.posts {
+  &__title {
+    padding: 10px 15px;
+    background-color: $blue-button-color;
+    color: $light-color;
+    border-radius: 20px;
+  }
+}

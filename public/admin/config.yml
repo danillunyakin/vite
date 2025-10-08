@@ -20,8 +20,8 @@ collections:
       - label: "Зображення"
         name: "image"
         widget: "image"
-        choose_url: true
-        # default: "/assets/images/default.jpg" # необязательно, можно убрать
+        choose_url: false
+        # default: "/assets/images/default.jpg" # необязательно, можно убратьcd 
 
       - label: "Текст"
         name: "body"
