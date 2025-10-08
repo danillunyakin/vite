@@ -4,7 +4,12 @@
   const postsContainer = document.getElementById("posts-container");
 
   // Импортируем все markdown файлы из папки content/posts
-  const modules = import.meta.glob("../content/posts/*.md", { eager: true, import: "default", query: "?raw"});
+  // const modules = import.meta.glob("../content/posts/*.md", { eager: true, import: "default", query: "?raw"});
+  const modules = import.meta.glob("../../content/posts/*.md", {
+  eager: true,
+  import: "default",
+  query: "?raw",
+});
 
   const posts = Object.entries(modules).map(([path, mod]) => {
     const raw = mod.default;
