@@ -53,8 +53,8 @@ postsContainer.innerHTML = posts
       <article class="post">
         ${p.image ? `<img src="${p.image}" alt="${p.title}" class="post__img">` : ""}
         <h3 class="post__title">${p.title}</h3>
-        <p class="post__date">${formatDate(p.date)}</p>
         <div class="post__content">${p.content}</div>
+        <p class="post__date">${formatDate(p.date)}</p>
       </article>
     `
   )

@@ -1,11 +1,29 @@
 @use "vars" as *;
 
+.post {
+  &__title {
+    font-size: 26px;
+    // color: ;
+  }
+
+  &__content {
+    
+  }
+
+  &__date {
+  }
+
+  &__img {
+    border-radius: 20px;
+  }
+}
+
 .posts {
   &__title {
-       text-align: center;
+    text-align: center;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 28px;
     margin-bottom: 30px;
-}
+  }
 }
