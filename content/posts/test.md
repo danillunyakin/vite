@@ -1,5 +1,5 @@
 ---
-title: Test
-image: /assets/images/photo_2025-03-12_22-45-00.jpg
+title: Test зоголовок
+image: /assets/images/знімок-екрана-2025-10-09-214843.png
 ---
-t﻿estik
+tТЕСТ  ТЕСТ тест тест
