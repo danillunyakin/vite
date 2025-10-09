@@ -1,7 +1,5 @@
 ---
-title: Это 100% рабочий пост
-date: 2025-10-09
-image: /assets/images/сквидвард.png
+title: Test
+image: /assets/images/photo_2025-03-12_22-45-00.jpg
 ---
-
-<!-- Если вы видите этот текст, значит, все работает! -->
+t﻿estik
