@@ -1,5 +1,7 @@
 ---
-title: Test
-image: /assets/images/сквидвард.png
+title: "Это 100% рабочий пост"
+date: "2025-10-09"
+image: "/assets/images/default.jpg"
 ---
-t﻿est
+
+<!-- Если вы видите этот текст, значит, все работает! -->

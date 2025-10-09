@@ -16,11 +16,13 @@
     const { data, content } = matter(raw);
     return {
       title: data.title || "Без назви",
-      date: data.date || "Без дати",
+      date: data.date ? new Date(data.date) : new Date(),
       image: data.image || null,
       content: marked.parse(content),
     };
   });
+
+  console.log("Обработанные посты:", posts); // <--- И ЭТУ СТРОКУ
 
   // Отсортировать по дате (новые сверху)
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
