@@ -22,8 +22,19 @@ collections:
         name: "image"
         widget: "image"
         choose_url: false
+        required: false
         # default: "/assets/images/default.jpg" # необязательно, можно убратьcd 
 
       - label: "Текст"
         name: "body"
         widget: "markdown"
+
+
+         - label: "Галерея (додаткові фото)"
+        name: "gallery"
+        widget: "list"
+        choose_url: false
+        required: false
+        fields:
+          - { label: "Зображення", name: "image", widget: "image" }
+          # - { label: "Підпис (alt текст)", name: "alt", widget: "string", required: false }
