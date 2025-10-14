@@ -2,7 +2,6 @@ backend:
   name: git-gateway
   branch: main
 
-
 media_folder: "public/assets/images"
 public_folder: "/assets/images"
 
@@ -12,29 +11,33 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{slug}}"
-    format: "frontmatter"
     fields:
       - label: "Заголовок"
         name: "title"
         widget: "string"
 
-      - label: "Зображення"
+      # --- ДОБАВЛЕНО: Поле для даты для правильной сортировки ---
+      - label: "Дата публікації"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+
+      - label: "Головне зображення"
         name: "image"
         widget: "image"
-        choose_url: false
         required: false
-        # default: "/assets/images/default.jpg" # необязательно, можно убратьcd 
 
       - label: "Текст"
         name: "body"
         widget: "markdown"
-
-
-         - label: "Галерея (додаткові фото)"
+        
+      # --- ИСПРАВЛЕНО: Убраны лишние отступы ---
+      - label: "Галерея (додаткові фото)"
         name: "gallery"
         widget: "list"
-        choose_url: false
         required: false
         fields:
           - { label: "Зображення", name: "image", widget: "image" }
-          # - { label: "Підпис (alt текст)", name: "alt", widget: "string", required: false }
+          - { label: "Підпис (alt текст)", name: "alt", widget: "string", required: false }
