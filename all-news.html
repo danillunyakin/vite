@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="page">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/scss/components/style.scss" />
@@ -10,49 +10,45 @@
       href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <title>КНП Старобільський центр первинної медико-санітарної допомоги</title>
-  </head>
-  <body class="page__body">
-    <include src="partials/header.html"></include>
-    <include src="partials/hero.html"></include>
-    <include src="partials/about.html"></include>
-    <include src="partials/services.html"></include>
-    <include src="partials/staff.html"></include>
-    <include src="partials/posts.html"></include>
-    <!-- <include src="partials/news.html"></include> -->
-    <include src="partials/benefits.html"></include>
-    <include src="partials/contact-form.html"></include>
-    <include src="partials/privacy-policy.html"></include>
-    <include src="partials/personal-data.html"></include>
+    
+    <title>Всі Новини</title>
+</head>
+<body class="page__body">
+
+    <!-- <include src="partials/header.html"></include> -->
+
+    <main>
+      <include src="partials/news.html"></include>
+      <div class="news__container" id="posts-container"></div>
+    </main>
+
     <include src="partials/footer.html"></include>
+    
     <div id="app"></div>
 
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
-          // если пользователь не залогинен — слушаем вход
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
           }
         });
-
-        // если пользователь переходит по invite_token
         window.netlifyIdentity.on("open", () => {
           const hash = window.location.hash;
           if (hash.includes("invite_token")) {
-            // автоматически открываем окно регистрации
             window.netlifyIdentity.open("signup");
           }
         });
       }
     </script>
-    <script type="module" src="/src/js/posts.js"></script>
-    <!-- <script type="module" src="/src/js/all-news.js" defer></script> -->
+
+    <script type="module" src="/src/js/all-news.js" defer></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script type="module" src="/src/js/form.js"></script>
+    
     <script type="module" src="/src/js/main.js"></script>
-  </body>
+</body>
 </html>
