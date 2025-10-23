@@ -5,13 +5,9 @@ import matter from "gray-matter";
 import { Buffer } from 'buffer';
 window.Buffer = Buffer;
 
-// 1. Находим контейнер для ВСЕХ новостей
 const postsContainer = document.getElementById("posts-container");
 
-// 2. ВАЖНО: Выполняем код, только если мы на странице all-news.html
-// (то есть, если контейнер найден)
 if (postsContainer) {
-
   const modules = import.meta.glob("../../content/posts/*.md", {
     eager: true,
     import: "default",
@@ -20,16 +16,15 @@ if (postsContainer) {
 
   const rawContents = Object.values(modules);
 
-  // Функция для создания HTML-кода галереи
-  const createGalleryHTML = (galleryItems) => {
+  const createGalleryHTML = (galleryItems, galleryId) => { 
     if (!galleryItems || galleryItems.length === 0) {
-      return ''; // Если картинок в галерее нет, возвращаем пустоту
+      return '';
     }
     return `
       <div class="post__gallery">
         ${galleryItems.map(item => `
           <figure class="post__gallery-item">
-            <a href="${item.image}" data-fancybox="gallery-${item.image}">
+            <a href="${item.image}" data-fancybox="gallery-${galleryId}">
                 <img src="${item.image}" alt="${item.alt || 'Gallery image'}" class="post__gallery-image">
             </a>
             ${item.alt ? `<figcaption class="post__gallery-caption">${item.alt}</figcaption>` : ''}
@@ -43,16 +38,17 @@ if (postsContainer) {
     if (!rawContent) return null;
     
     const { data, content } = matter(rawContent);
+    const postDate = data.date ? new Date(data.date) : new Date();
+
     return {
       title: data.title || "Без назви",
-      date: data.date ? new Date(data.date) : new Date(),
+      date: postDate,
       image: data.image || null,
-      content: marked.parse(content), // Здесь полный текст, без обрезки
-      galleryHTML: createGalleryHTML(data.gallery) // Создаем HTML для галереи
+      content: marked.parse(content),
+      galleryHTML: createGalleryHTML(data.gallery, postDate.getTime()) 
     };
   }).filter(post => post !== null);
 
-  // Сортируем посты (без .slice!)
   posts.sort((a, b) => b.date - a.date);
 
   function formatDate(date) {
@@ -63,19 +59,24 @@ if (postsContainer) {
     });
   }
 
-  // Рендерим ВСЕ посты
+  // --- ОСЬ ТУТ ЗМІНИ ---
+  // Ми поміняли місцями galleryHTML та title/content
   postsContainer.innerHTML = posts
     .map(
       (p) => `
         <article class="post">
           ${p.image ? `<img src="${p.image}" alt="${p.title}" class="post__img">` : ""}
-          <h3 class="post__title">${p.title}</h3>
+          
+          ${p.galleryHTML} <h3 class="post__title">${p.title}</h3>
           <div class="post__content">${p.content}</div>
-          ${p.galleryHTML} 
+          
           <p class="post__date">${p.date ? formatDate(p.date) : ''}</p>
         </article>
       `
     )
     .join("");
 
-} // <-- 3. Закрываем if (postsContainer)
+  // "Вмикаємо" Fancybox для всіх посилань, які мають data-fancybox
+  Fancybox.bind("[data-fancybox]");
+
+} // <-- Кінець if (postsContainer)

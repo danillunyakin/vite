@@ -3,12 +3,11 @@
 .posts {
   margin-top: 80px;
 
-
-// &__wrap {
-// display: flex;
-// align-items: center;
-// justify-content: space-between;
-// }
+  // &__wrap {
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  // }
 
   &__title {
     text-align: center;
@@ -37,16 +36,24 @@
   }
 
   &__list {
-    display: grid; // Вмикаємо Grid-сітку
-    grid-template-columns: repeat(3, 1fr); // Створюємо 3 колонки однакової ширини (1fr = 1 частка)
-    gap: 30px; // Додаємо відступ (30px) між колонками
-    width: 100%; // Переконуємось, що контейнер займає всю доступну ширину
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 колонки в ряд
+    gap: 30px;
+    width: 100%;
+    // display: grid; // Вмикаємо Grid-сітку
+    // grid-template-columns: repeat(
+    //   3,
+    //   1fr
+    // ); // Створюємо 3 колонки однакової ширини (1fr = 1 частка)
+    // gap: 30px; // Додаємо відступ (30px) між колонками
+    // width: 100%; // Переконуємось, що контейнер займає всю доступну ширину
   }
 }
 
 .post {
   &__title {
     font-size: 26px;
+    margin-top: 15px;
     // color: ;
   }
 
@@ -56,11 +63,62 @@
 
   &__date {
     font-size: 14px;
+    opacity: 0.7;
   }
 
   &__img {
-    height: 250px;
-    width: 250px;
-    border-radius: 20px;
+    width: 100%;       
+    height: 300px;     // Висота для ВЕЛИКОГО фото
+    object-fit: cover; // <-- 🔥 ВАЖЛИВО: НЕ ДАЄ РОЗТЯГУВАТИСЬ
+    border-radius: 10px;
+    display: block;
+  }
+
+  &__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 фото в ряд
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  // Одне фото в галереї (на "Всі Новини")
+  &__gallery-item {
+    a,
+    img {
+      width: 100%;
+      height: 180px; // Висота для маленьких фото
+      object-fit: cover; // <-- ВАЖЛИВО: Запобігає розтягуванню
+      border-radius: 10px;
+      display: block;
+    }
+  }
+  &__image-wrapper {
+    position: relative;
+    display: block; 
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  // --- ДОДАНО ---
+  // Стилі для самого індикатора
+  &__gallery-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center; // Центрує по вертикалі
+    gap: 5px;
+    font-size: 14px;
+
+    svg {
+      // Стилі для іконки
+      width: 16px;
+      height: 16px;
+    flex-shrink: 0;
+    }
   }
 }
