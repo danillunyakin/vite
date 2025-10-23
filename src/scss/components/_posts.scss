@@ -1,14 +1,24 @@
 @use "vars" as *;
 
 .posts {
+  margin-top: 80px;
+
+
+// &__wrap {
+// display: flex;
+// align-items: center;
+// justify-content: space-between;
+// }
+
   &__title {
     text-align: center;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 28px;
-    margin-bottom: 30px;
+    margin-bottom: 55px;
   }
   &__link {
+    margin-top: 50px;
     padding: 10px 27px;
     font-weight: 700;
     font-size: 24px;
@@ -24,6 +34,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &__list {
+    display: grid; // Вмикаємо Grid-сітку
+    grid-template-columns: repeat(3, 1fr); // Створюємо 3 колонки однакової ширини (1fr = 1 частка)
+    gap: 30px; // Додаємо відступ (30px) між колонками
+    width: 100%; // Переконуємось, що контейнер займає всю доступну ширину
   }
 }
 

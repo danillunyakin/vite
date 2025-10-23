@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="page">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/scss/components/style.scss" />
@@ -9,21 +9,24 @@
       type="text/css"
       href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    
-    <title>Всі Новини</title>
-</head>
-<body class="page__body">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
 
+    <title>Всі Новини</title>
+  </head>
+  <body class="page__body">
     <!-- <include src="partials/header.html"></include> -->
 
     <main>
       <include src="partials/news.html"></include>
       <div class="news__container" id="posts-container"></div>
     </main>
-
+    <include src="partials/privacy-policy.html"></include> 
+    <include src="partials/personal-data.html"></include>
     <include src="partials/footer.html"></include>
-    
+
     <div id="app"></div>
 
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -46,9 +49,9 @@
     </script>
 
     <script type="module" src="/src/js/all-news.js" defer></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    
+
     <script type="module" src="/src/js/main.js"></script>
-</body>
+  </body>
 </html>
