@@ -3,12 +3,6 @@
 .posts {
   margin-top: 80px;
 
-  // &__wrap {
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // }
-
   &__title {
     text-align: center;
     text-transform: uppercase;
@@ -16,6 +10,7 @@
     font-size: 28px;
     margin-bottom: 55px;
   }
+
   &__link {
     margin-top: 50px;
     padding: 10px 27px;
@@ -27,6 +22,10 @@
     background-color: #0364f4;
     border: 0;
     transition: transform 0.1s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__container {
@@ -35,72 +34,53 @@
     justify-content: center;
   }
 
+  /* === Сетка для главной страницы (3 поста) === */
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // 3 колонки в ряд
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     width: 100%;
-    // display: grid; // Вмикаємо Grid-сітку
-    // grid-template-columns: repeat(
-    //   3,
-    //   1fr
-    // ); // Створюємо 3 колонки однакової ширини (1fr = 1 частка)
-    // gap: 30px; // Додаємо відступ (30px) між колонками
-    // width: 100%; // Переконуємось, що контейнер займає всю доступну ширину
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
+/* === Карточка поста — базовый вид (для главной) === */
 .post {
-  &__title {
-    font-size: 26px;
-    margin-top: 15px;
-    // color: ;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
   }
 
-  &__content {
-    font-size: 20px;
-  }
-
-  &__date {
-    font-size: 14px;
-    opacity: 0.7;
-  }
-
-  &__img {
-    width: 100%;       
-    height: 300px;     // Висота для ВЕЛИКОГО фото
-    object-fit: cover; // <-- 🔥 ВАЖЛИВО: НЕ ДАЄ РОЗТЯГУВАТИСЬ
-    border-radius: 10px;
-    display: block;
-  }
-
-  &__gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); // 3 фото в ряд
-    gap: 15px;
-    margin: 20px 0;
-  }
-
-  // Одне фото в галереї (на "Всі Новини")
-  &__gallery-item {
-    a,
-    img {
-      width: 100%;
-      height: 180px; // Висота для маленьких фото
-      object-fit: cover; // <-- ВАЖЛИВО: Запобігає розтягуванню
-      border-radius: 10px;
-      display: block;
-    }
-  }
   &__image-wrapper {
     position: relative;
-    display: block; 
+    display: block;
     border-radius: 10px;
     overflow: hidden;
   }
 
-  // --- ДОДАНО ---
-  // Стилі для самого індикатора
+  &__img {
+    width: 100%;
+    height: 250px; // высота фото на главной
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
   &__gallery-indicator {
     position: absolute;
     top: 10px;
@@ -110,15 +90,121 @@
     padding: 5px 8px;
     border-radius: 10px;
     display: flex;
-    align-items: center; // Центрує по вертикалі
+    align-items: center;
     gap: 5px;
     font-size: 14px;
 
     svg {
-      // Стилі для іконки
       width: 16px;
       height: 16px;
-    flex-shrink: 0;
+      flex-shrink: 0;
     }
+  }
+
+  &__text-content {
+    padding: 15px;
+  }
+
+  &__title {
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  &__content {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  &__date {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 10px;
+  }
+}
+
+/* === Страница all-news.html (всі новини) === */
+.news__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 900px; // 👇 ДОБАВЬ ЭТУ СТРОКУ (для центрирования и ограничения ширины)
+  margin: 0 auto;
+}
+
+/* === Карточки постов только для "Всі новини" === */
+.news__container .post {
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  &__img {
+    width: 100%;
+    height: 250px; // чуть выше, чем на главной
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__gallery {
+    margin-top: 15px;
+    display: grid; // 👈 1. Используем Grid
+    gap: 5px;
+    width: 100%;
+    // 👇 2. ВОТ ГЛАВНАЯ МАГИЯ 👇
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    // margin-top: 15px;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fit, 180px); // (1)
+    // gap: 10px;
+    // justify-content: center;
+    // width: 100%;
+  }
+
+  &__gallery-item {
+    // width: 220px;
+    aspect-ratio: 1 / 1; // делает все превью квадратными
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__title {
+    font-size: 22px;
+    margin: 15px 0 10px;
+    font-weight: 600;
+  }
+
+  &__content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  &__date {
+    font-size: 14px;
+    color: #777;
+    margin-top: auto;
   }
 }

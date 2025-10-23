@@ -1,5 +1,9 @@
 // src/js/all-news.js - для страницы со всеми новостями
 
+// import '../scss/components/style.scss';
+import '../scss/components/style.scss';
+
+
 import { marked } from "marked";
 import matter from "gray-matter";
 import { Buffer } from 'buffer';
@@ -34,20 +38,50 @@ if (postsContainer) {
     `;
   };
 
-  const posts = rawContents.map((rawContent) => {
-    if (!rawContent) return null;
+  // const posts = rawContents.map((rawContent) => {
+  //   if (!rawContent) return null;
     
-    const { data, content } = matter(rawContent);
-    const postDate = data.date ? new Date(data.date) : new Date();
+  //   const { data, content } = matter(rawContent);
+  //   const postDate = data.date ? new Date(data.date) : new Date();
 
-    return {
-      title: data.title || "Без назви",
-      date: postDate,
-      image: data.image || null,
-      content: marked.parse(content),
-      galleryHTML: createGalleryHTML(data.gallery, postDate.getTime()) 
-    };
-  }).filter(post => post !== null);
+  //   return {
+  //     title: data.title || "Без назви",
+  //     date: postDate,
+  //     image: data.image || null,
+  //     content: marked.parse(content),
+  //     galleryHTML: createGalleryHTML(data.gallery, postDate.getTime()) 
+  //   };
+  // }).filter(post => post !== null);
+
+  const posts = rawContents.map((rawContent) => {
+    if (!rawContent) return null;
+    
+    const { data, content } = matter(rawContent);
+    const postDate = data.date ? new Date(data.date) : new Date();
+
+    // --- 👇 ВОТ НОВАЯ ЛОГИКА 👇 ---
+    
+    // 1. Копіюємо існуючу галерею (якщо вона є)
+    const finalGallery = data.gallery ? [...data.gallery] : []; 
+    
+    // 2. Якщо є головне фото (data.image), створюємо для нього об'єкт...
+    if (data.image) {
+      // ... і додаємо його на ПОЧАТОК масиву finalGallery
+      finalGallery.unshift({
+        image: data.image,
+        alt: data.title + " (Головне фото)" // Додаємо опис для головного фото
+      });
+    }
+    // --- 👆 КОНЕЦ НОВОЙ ЛОГИКИ 👆 ---
+
+    return {
+      title: data.title || "Без назви",
+      date: postDate,
+      // image: data.image || null, // 👈 Головне фото тут більше не потрібне
+      content: marked.parse(content),
+      galleryHTML: createGalleryHTML(finalGallery, postDate.getTime()) // 👈 Передаємо новий об'єднаний масив
+    };
+  }).filter(post => post !== null);
 
   posts.sort((a, b) => b.date - a.date);
 
@@ -62,19 +96,18 @@ if (postsContainer) {
   // --- ОСЬ ТУТ ЗМІНИ ---
   // Ми поміняли місцями galleryHTML та title/content
   postsContainer.innerHTML = posts
-    .map(
-      (p) => `
-        <article class="post">
-          ${p.image ? `<img src="${p.image}" alt="${p.title}" class="post__img">` : ""}
-          
-          ${p.galleryHTML} <h3 class="post__title">${p.title}</h3>
-          <div class="post__content">${p.content}</div>
-          
-          <p class="post__date">${p.date ? formatDate(p.date) : ''}</p>
-        </article>
-      `
-    )
-    .join("");
+    .map(
+      (p) => `
+        <article class="post">
+          
+          ${p.galleryHTML} <h3 class="post__title">${p.title}</h3>
+          <div class="post__content">${p.content}</div>
+          
+          <p class="post__date">${p.date ? formatDate(p.date) : ''}</p>
+        </article>
+      `
+    )
+    .join("");
 
   // "Вмикаємо" Fancybox для всіх посилань, які мають data-fancybox
   Fancybox.bind("[data-fancybox]");
