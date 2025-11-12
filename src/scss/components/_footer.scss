@@ -1,7 +1,6 @@
 @use "vars" as *;
 
-//ПОЧИНИТЬ ССИЛКУ 
-
+//ПОЧИНИТЬ ССИЛКУ
 
 .footer {
   background-color: $form-bg-color;
@@ -9,6 +8,15 @@
   &__container {
     display: flex;
     justify-content: space-around;
+
+    @media (max-width: 997px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      // flex-direction: column; // Ставим колонки друг под друга
+      // align-items: center;    // Выравниваем их по центру
+      // text-align: center;     // Отцентрируем текст внутри них
+      gap: 60px; // Добавим отступ между блоками
+    }
   }
 
   &-column {
@@ -32,7 +40,6 @@
         }
       }
 
-
       &-link {
         // display: inline-flex;
         // align-items: center;
@@ -55,9 +62,19 @@
   }
 
   &-column {
+    // &:nth-child(1) {
+    //   @media (max-width: 997px) {
+    //     display: none; // Полностью скрыть первую колонку (лого и текст)
+    //   }
+    // }
     &__image {
       width: 200px;
       height: 200px;
+
+      @media (max-width: 997px) {
+        width: 150px;
+        height: 150px;
+      }
     }
 
     &__description {
@@ -82,13 +99,20 @@
       border-top: 3px solid $light-bg-color;
       padding: 0;
 
+      @media (max-width: 997px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 30px;
+        padding: 20px 10px;
+        text-align: center;
+      }
+
       &-btn {
         border: 0;
         background: 0;
         padding: 0;
         margin: 0;
         cursor: pointer;
-
       }
 
       &-link,
@@ -98,16 +122,16 @@
     }
   }
 
-iframe {
-  display: block;
-    width: 100%;   // на всю ширину экрана
+  iframe {
+    display: block;
+    width: 100%; // на всю ширину экрана
     height: 350px; // можно менять под макет (vh или px)
     border: 0;
-}
+  }
 
-.facebook-link {
-  display: inline-flex;
-        align-items: center;
-        gap: 5px;
-}
+  .facebook-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
 }

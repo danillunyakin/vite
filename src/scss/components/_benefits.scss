@@ -13,6 +13,12 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 992px) {
+      flex-direction: column; // Ставим элементы в столбик
+      gap: 20px; // Добавляем отступ между ними
+      padding: 0 15px; // Добавляем боковые отступы
+    }
+
     &-item {
       // margin: 0;
       // padding: 0;
@@ -24,6 +30,10 @@
         color: $light-color;
         border-radius: 20px;
         // padding: 0;
+
+        @media (max-width: 480px) {
+          text-align: center;
+        }
       }
     }
   }

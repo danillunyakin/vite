@@ -4,19 +4,120 @@
   &__container {
     padding: 30px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center; 
+    position: relative;
+
+    @media (max-width: 768px) {
+      justify-content: flex-end; 
+      padding: 20px 15px;
+    }
   }
 
+  // 🍔  
+  &__burger-btn {
+    display: none; // По умолчанию скрыта на ПК
+    width: 30px;
+    height: 20px;
+    position: relative;
+    z-index: 51;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+   
+    @media (max-width: 768px) {
+      display: block;
+    }
+
+  
+    span {
+      display: block;
+      width: 100%;
+      height: 4px;
+      background-color: vars.$dark-color;
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+      border-radius: 3px;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+
+    // Анимация 
+    &.is-active {
+      span:nth-child(1) {
+        top: 50%;
+        transform: rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        top: 50%;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+ 
   &__menu {
+   
+    @media (max-width: 768px) {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 50;
+    }
+
+   
+    &.is-active {
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
+
+
     &-list {
       display: flex;
 
-      &-item + &-item {
-        padding-left: 10px;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
       }
 
+     
+      &-item {
+        @media (max-width: 768px) {
+          margin: 10px 0;
+        }
+      }
+
+      &-item + &-item {
+        padding-left: 10px; 
+        @media (max-width: 768px) {
+          padding-left: 0; 
+        }
+      }
+
+  
       &-link {
+        
         text-transform: uppercase;
         font-weight: 600;
         font-size: 18px;
@@ -24,6 +125,12 @@
         padding: 5px 20px;
         transition: all 0.3s ease-in-out;
         border-radius: 8px;
+
+        
+        @media (max-width: 768px) {
+          font-size: 20px;
+          padding: 10px 20px;
+        }
       }
 
       &-link:hover {

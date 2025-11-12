@@ -7,6 +7,9 @@
     display: flex;
     justify-content: center;
     padding: 50px 0;
+    @media (max-width: 1000px) {
+      padding: 30px 15px;
+    }
   }
 
   &-form {
@@ -14,10 +17,14 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 700px;
+    // width: 700px;
+    width: 100%;
     max-width: 500px;
     background-color: $light-color;
     padding: 25px;
+    @media (max-width: 1000px) {
+      border-radius: 25px; // Чиним углы на мобильных
+    }
 
     &__group {
       display: flex;
@@ -68,7 +75,7 @@
       }
     }
 
-    &__button:hover{
+    &__button:hover {
       background-color: #165dc6;
     }
 
@@ -89,6 +96,9 @@
       width: 500px;
       height: 100%;
       border-radius: 0 25px 25px 0;
+      @media (max-width: 1000px) {
+       display: none;
+      }
     }
   }
 }

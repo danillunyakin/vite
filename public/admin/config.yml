@@ -1,8 +1,15 @@
-backend:
-  name: git-gateway
-  branch: main
+# backend:
+#   name: git-gateway
+#   branch: main
 
-media_folder: "public/assets/images"
+backend:
+  name: github
+  repo: danillunyakin/vite 
+  branch: main
+  base_url: https://app.netlify.com
+  auth_endpoint: auth
+
+media_folder: "public/assets/images" # <- Это папка ПО УМОЛЧАНИЮ (для картинок)
 public_folder: "/assets/images"
 
 collections:
@@ -16,7 +23,6 @@ collections:
         name: "title"
         widget: "string"
 
-      # --- ДОБАВЛЕНО: Поле для даты для правильной сортировки ---
       - label: "Дата публікації"
         name: "date"
         widget: "datetime"
@@ -28,12 +34,23 @@ collections:
         name: "image"
         widget: "image"
         required: false
+        # (Оно будет использовать media_folder по умолчанию, т.е. /assets/images)
 
       - label: "Текст"
         name: "body"
         widget: "markdown"
-        
-      # --- ИСПРАВЛЕНО: Убраны лишние отступы ---
+
+      # --- ВОТ НОВОЕ ПОЛЕ ДЛЯ ВИДЕО-ФАЙЛА ---
+      - label: "Відео-файл (MP4, WebM)"
+        name: "video_file"
+        widget: "file"
+        required: false
+        hint: "Завантажте сюди відео-файл. Увага: це збільшить розмір репозиторію!"
+        # Мы указываем свою папку ТОЛЬКО для этого поля:
+        media_folder: "public/assets/videos"
+        public_folder: "/assets/videos"
+      # --- КОНЕЦ НОВОГО ПОЛЯ ---
+
       - label: "Галерея (додаткові фото)"
         name: "gallery"
         widget: "list"

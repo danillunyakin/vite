@@ -1,9 +1,6 @@
-// src/js/all-news.js - для страницы со всеми новостями
+// src/js/all-news.js
 
-// import '../scss/components/style.scss';
 import '../scss/components/style.scss';
-
-
 import { marked } from "marked";
 import matter from "gray-matter";
 import { Buffer } from 'buffer';
@@ -20,7 +17,24 @@ if (postsContainer) {
 
   const rawContents = Object.values(modules);
 
-  const createGalleryHTML = (galleryItems, galleryId) => { 
+  // --- НОВАЯ ФУНКЦИЯ ДЛЯ ГЕНЕРАЦИИ ВИДЕО ---
+  const createVideoHTML = (videoPath) => {
+    if (!videoPath) {
+      return ''; // Если видео нет, возвращаем пустую строку
+    }
+    // Возвращаем HTML5-плеер
+    return `
+      <div class="post__video-wrapper">
+        <video controls width="100%" preload="metadata">
+          <source src="${videoPath}" type="video/mp4">
+          На жаль, ваш браузер не підтримує відтворення відео.
+        </video>
+      </div>
+    `;
+  };
+  // --- КОНЕЦ НОВОЙ ФУНКЦИИ ---
+
+  const createGalleryHTML = (galleryItems, galleryId) => {
     if (!galleryItems || galleryItems.length === 0) {
       return '';
     }
@@ -38,50 +52,30 @@ if (postsContainer) {
     `;
   };
 
-  // const posts = rawContents.map((rawContent) => {
-  //   if (!rawContent) return null;
-    
-  //   const { data, content } = matter(rawContent);
-  //   const postDate = data.date ? new Date(data.date) : new Date();
-
-  //   return {
-  //     title: data.title || "Без назви",
-  //     date: postDate,
-  //     image: data.image || null,
-  //     content: marked.parse(content),
-  //     galleryHTML: createGalleryHTML(data.gallery, postDate.getTime()) 
-  //   };
-  // }).filter(post => post !== null);
-
   const posts = rawContents.map((rawContent) => {
-    if (!rawContent) return null;
-    
-    const { data, content } = matter(rawContent);
-    const postDate = data.date ? new Date(data.date) : new Date();
-
-    // --- 👇 ВОТ НОВАЯ ЛОГИКА 👇 ---
+    if (!rawContent) return null;
     
-    // 1. Копіюємо існуючу галерею (якщо вона є)
+    const { data, content } = matter(rawContent);
+    const postDate = data.date ? new Date(data.date) : new Date();
+
     const finalGallery = data.gallery ? [...data.gallery] : []; 
     
-    // 2. Якщо є головне фото (data.image), створюємо для нього об'єкт...
     if (data.image) {
-      // ... і додаємо його на ПОЧАТОК масиву finalGallery
       finalGallery.unshift({
         image: data.image,
-        alt: data.title + " (Головне фото)" // Додаємо опис для головного фото
+        alt: data.title + " (Головне фото)"
       });
     }
-    // --- 👆 КОНЕЦ НОВОЙ ЛОГИКИ 👆 ---
 
-    return {
-      title: data.title || "Без назви",
-      date: postDate,
-      // image: data.image || null, // 👈 Головне фото тут більше не потрібне
-      content: marked.parse(content),
-      galleryHTML: createGalleryHTML(finalGallery, postDate.getTime()) // 👈 Передаємо новий об'єднаний масив
-    };
-  }).filter(post => post !== null);
+    return {
+      title: data.title || "Без назви",
+      date: postDate,
+      content: marked.parse(content),
+      galleryHTML: createGalleryHTML(finalGallery, postDate.getTime()),
+      // --- ДОБАВЛЕНО: Генерируем HTML для видео ---
+      videoHTML: createVideoHTML(data.video_file) 
+    };
+  }).filter(post => post !== null);
 
   posts.sort((a, b) => b.date - a.date);
 
@@ -93,23 +87,23 @@ if (postsContainer) {
     });
   }
 
-  // --- ОСЬ ТУТ ЗМІНИ ---
-  // Ми поміняли місцями galleryHTML та title/content
   postsContainer.innerHTML = posts
-    .map(
-      (p) => `
-        <article class="post">
-          
-          ${p.galleryHTML} <h3 class="post__title">${p.title}</h3>
-          <div class="post__content">${p.content}</div>
-          
-          <p class="post__date">${p.date ? formatDate(p.date) : ''}</p>
-        </article>
-      `
-    )
-    .join("");
+    .map(
+      (p) => `
+        <article class="post">
+          
+          ${p.videoHTML} 
+          ${p.galleryHTML} 
+          
+          <h3 class="post__title">${p.title}</h3>
+          <div class="post__content">${p.content}</div>
+          
+          <p class="post__date">${p.date ? formatDate(p.date) : ''}</p>
+        </article>
+      `
+    )
+    .join("");
 
-  // "Вмикаємо" Fancybox для всіх посилань, які мають data-fancybox
   Fancybox.bind("[data-fancybox]");
 
 } // <-- Кінець if (postsContainer)

@@ -1,7 +1,12 @@
 <header class="header">
   <div class="container">
     <div class="header__container">
-      <nav class="header__menu">
+
+      <button class="header__burger-btn list-reset" id="burger-btn" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="header__menu" id="mobile-menu">
         <ul class="header__menu-list list-reset">
           <li class="header__menu-list-item">
             <a href="#about" class="header__menu-list-link">ПРО КЛІНІКУ</a>
@@ -15,11 +20,12 @@
           <li class="header__menu-list-item">
             <a href="#services" class="header__menu-list-link">ПОСЛУГИ</a>
           </li>
-          <li class="header__menu-list-item">
+          <li classs="header__menu-list-item">
             <a href="#contact-form" class="header__menu-list-link">ЗАПИСАТИСЯ </a>
           </li>
         </ul>
       </nav>
+      
     </div>
   </div>
 </header>

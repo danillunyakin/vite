@@ -3,14 +3,20 @@
 .staff {
   margin-top: 120px;
   &__container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
   }
   &__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr); // 2 карточки в ряд
     gap: 20px;
-    grid: auto rows 240px;
+    // grid-auto-rows: 240px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr; // Ставим 1 колонку
+      grid-auto-rows: auto; // Разрешаем карточкам быть любой высоты
+      padding: 0 15px; // Добавим отступы по бокам
+    }
 
     &-item {
       background-color: $form-bg-color;
@@ -21,7 +27,19 @@
       gap: 40px;
       height: 225px; // карточка не станет меньше по высоте
       // min-width: 450px;
+      // min-height: 225px;
       padding: 20px;
+
+      @media (max-width: 768px) {
+        height: auto;
+      }
+
+      @media (max-width: 480px) {
+        // Для маленьких телефонов
+        flex-direction: column; // Картинка встанет над текстом
+        gap: 20px;
+        text-align: center;
+      }
     }
 
     // &-item:last-child {
@@ -37,6 +55,11 @@
       height: 180px;
       border-radius: 10px;
       //  margin: 0 0 0 20px;
+    }
+    &-info {
+      flex: 1; // Говорим блоку "займи всё оставшееся место"
+      min-width: 0; // 🔥 ЭТО ГЛАВНЫЙ ФИКС!
+      // Он разрешает блоку "сжиматься" и заставляет текст внутри переноситься
     }
 
     &-title {
