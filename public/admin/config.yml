@@ -1,13 +1,13 @@
-# backend:
-#   name: git-gateway
-#   branch: main
-
 backend:
-  name: github
-  repo: danillunyakin/vite 
+  name: git-gateway
   branch: main
-  base_url: https://app.netlify.com
-  auth_endpoint: auth
+
+# backend:
+#   name: github
+#   repo: danillunyakin/vite 
+#   branch: main
+#   base_url: https://app.netlify.com
+#   auth_endpoint: auth
 
 media_folder: "public/assets/images" # <- Это папка ПО УМОЛЧАНИЮ (для картинок)
 public_folder: "/assets/images"
